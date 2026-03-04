@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #262626;
+
+    --card: #ffffff;
+    --card-foreground: #262626;
+
+    --popover: #ffffff;
+    --popover-foreground: #262626;
+
+    --primary: #ff8c00;
+    --primary-foreground: #ffffff;
+
+    --secondary: #611b61;
+    --secondary-foreground: #ffffff;
+    --secondary-soft: #f3f2f7;
+    --secondary-foreground-soft: #adadad;
+
+    --accent: #ffd4a3;
+    --accent-foreground: #262626;
+
+    --muted: #dbd1db;
+    --muted-foreground: #525252;
+
+    --border: #e5e5e5;
+    --input: #f5f5f5;
+    --ring: #a1a1aa;
+
+    --destructive: #404040;
+
+    --radius: 0.625rem;
+
+    --chart-1: #ff8c00;
+    --chart-2: #611b61;
+    --chart-3: #ffd4a3;
+    --chart-4: #dbd1db;
+    --chart-5: #737373;
+
+    --neutral-800: #262626;
+    --neutral-700: #404040;
+    --neutral-600: #525252;
+    --neutral-500: #737373;
+    --zinc-400: #a1a1aa;
+    --neutral-200: #e5e5e5;
+    --neutral-100: #f5f5f5;
+    --semantic-fg-subtle: #898d8f;
+  }
+}
+
+@layer components {
+  .screen-content {
+    @apply mt-8 flex-1 justify-between bg-background;
+  }
+}
