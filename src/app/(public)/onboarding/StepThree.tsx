@@ -1,12 +1,15 @@
 import { Text, View } from 'react-native';
 
-import { Button } from '@/components/shadcn/button';
-import { Checkbox } from '@/components/shadcn/checkbox';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Check } from 'lucide-react-native';
+
+import { Icon } from '@/components/shadcn/icon';
 
 import { OnboardingCard } from './OnboardingCard';
 
 interface StepThreeProps {
   isActive: boolean;
+  onContinue?: () => void;
 }
 
 const TODOS = [
@@ -17,7 +20,7 @@ const TODOS = [
   { id: 5, label: 'Sonhos' },
 ];
 
-export const StepThree = ({ isActive }: StepThreeProps) => {
+export const StepThree = ({ isActive, onContinue }: StepThreeProps) => {
   return (
     <View>
       <OnboardingCard
@@ -25,23 +28,26 @@ export const StepThree = ({ isActive }: StepThreeProps) => {
         description="Crie hábitos de organização alinhando intenções e afazeres!"
         isActive={isActive}
       >
-        <View className="flex flex-col gap-[16px]">
+        <View className="flex flex-col gap-5">
           {TODOS.map((item) => (
-            <View key={item.id} className="flex-row items-center">
-              <Checkbox
-                checked={true}
-                disabled={true}
-                className="mr-2 h-[20px] w-[20px] rounded-full bg-primary"
-              />
-
-              <Text className="text-[13px] text-[#737373]">{item.label}</Text>
+            <View key={item.id} className="flex-row items-center gap-2">
+              <LinearGradient
+                colors={['#ff8c00', '#ffd4a3']}
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: 999,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Icon as={Check} size={14} color="#FFF" />
+              </LinearGradient>
+              <Text className="text-[13px] text-neutral-500">{item.label}</Text>
             </View>
           ))}
         </View>
       </OnboardingCard>
-      <Button className="mt-[19px]">
-        <Text className="text-[16px] text-white">Vamos lá!</Text>
-      </Button>
     </View>
   );
 };

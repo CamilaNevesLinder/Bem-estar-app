@@ -64,6 +64,7 @@ type ButtonProps = React.ComponentProps<typeof Pressable> &
   VariantProps<typeof buttonVariants> & {
     iconLeft?: LucideIcon;
     iconRight?: LucideIcon;
+    iconColor?: string;
   };
 
 function Button({
@@ -72,6 +73,7 @@ function Button({
   size,
   iconLeft,
   iconRight,
+  iconColor,
   children,
   ...props
 }: ButtonProps) {
@@ -113,7 +115,7 @@ function Button({
 
               {iconRight && (
                 <View className="absolute bottom-0 right-4 top-0 justify-center">
-                  <Icon as={iconRight} className="size-5 text-white" />
+                  <Icon as={iconRight} color={iconColor} className="size-5" />
                 </View>
               )}
             </>

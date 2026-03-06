@@ -31,31 +31,35 @@ export const StepOne = ({ isActive, onContinue }: StepOneProps) => {
       isActive={isActive}
       onContinue={onContinue}
     >
-      <Text className="flex h-20 text-4xl shadow-md">{selectedMood.emoji}</Text>
+      <View className="gap-5">
+        <Text className="flex h-[42px] text-4xl shadow-md">
+          {selectedMood.emoji}
+        </Text>
 
-      <Progress value={selectedMood.value} className="mb-5" />
+        <Progress value={selectedMood.value} className="h-[9.98px] bg-accent" />
 
-      <View className="flex-row justify-between gap-4">
-        {MOODS.map((mood) => (
-          <Button
-            key={mood.id}
-            variant="ghost"
-            onPress={() => setSelectedMood(mood)}
-            className={cn('m-0 mb-4 flex-row rounded-full bg-transparent p-0')}
-          >
-            <View
-              className={cn(
-                'h-12 items-center justify-center',
-                selectedMood.id === mood.id &&
-                  'jus h-12 w-12 rounded-full bg-[#FFD4A3]',
-              )}
+        <View className="flex-row justify-between gap-4">
+          {MOODS.map((mood) => (
+            <Button
+              key={mood.id}
+              variant="ghost"
+              onPress={() => setSelectedMood(mood)}
+              className={cn('m-0 flex-row rounded-full bg-transparent p-0')}
             >
-              <Text className="text-xl">{mood.emoji}</Text>
-            </View>
+              <View
+                className={cn(
+                  'h-12 items-center justify-center',
+                  selectedMood.id === mood.id &&
+                    'jus h-12 w-12 rounded-full bg-[#FFD4A3]',
+                )}
+              >
+                <Text className="text-xl">{mood.emoji}</Text>
+              </View>
 
-            <Text className="font-inter text-xs text-ring">{mood.label}</Text>
-          </Button>
-        ))}
+              <Text className="font-inter text-xs text-ring">{mood.label}</Text>
+            </Button>
+          ))}
+        </View>
       </View>
     </OnboardingCard>
   );
