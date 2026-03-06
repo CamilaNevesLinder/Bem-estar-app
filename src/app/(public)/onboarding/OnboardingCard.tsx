@@ -1,5 +1,3 @@
-import { View } from 'react-native';
-
 import { Button } from '@/components/shadcn/button';
 import {
   Card,
@@ -9,6 +7,7 @@ import {
   CardTitle,
 } from '@/components/shadcn/card';
 import { Text } from '@/components/shadcn/text';
+import { cn } from '@/lib/utils';
 
 interface OnboardingCardProps {
   title: string;
@@ -26,28 +25,28 @@ export const OnboardingCard = ({
   onContinue,
 }: OnboardingCardProps) => {
   return (
-    <View>
-      <Card className="mt-[24px]">
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          {description && <CardDescription>{description}</CardDescription>}
-        </CardHeader>
-
-        {isActive && (
-          <>
-            <CardContent>{children}</CardContent>
-
-            {onContinue && (
-              <Button
-                onPress={onContinue}
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 rounded-full px-8 py-4"
-              >
-                <Text>Continuar</Text>
-              </Button>
-            )}
-          </>
+    <Card className={cn('w-full', isActive && 'mb-4')}>
+      <CardHeader className="gap-2.5">
+        <CardTitle numberOfLines={2}>{title}</CardTitle>
+        {description && (
+          <CardDescription numberOfLines={2}>{description}</CardDescription>
         )}
-      </Card>
-    </View>
+      </CardHeader>
+
+      {isActive && (
+        <>
+          <CardContent>{children}</CardContent>
+
+          {onContinue && (
+            <Button
+              onPress={onContinue}
+              className="absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-full px-3 py-2"
+            >
+              <Text>Continuar</Text>
+            </Button>
+          )}
+        </>
+      )}
+    </Card>
   );
 };

@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { LayoutAnimation, ScrollView, View } from 'react-native';
+import { LayoutAnimation, View } from 'react-native';
 
+import { ArrowRight } from 'lucide-react-native';
+
+import { Button } from '@/components/shadcn/button';
 import { Svg } from '@/components/shadcn/svg';
 import { Text } from '@/components/shadcn/text';
 import { ScreenTemplate } from '@/components/templates';
@@ -17,19 +20,19 @@ const Welcome = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setActiveStep(step);
   };
+
   return (
     <ScreenTemplate
+      contentClassName="mt-2"
+      keyboardAware
       variant="scroll"
       navbar={{
         leftContent: <Text variant="h2">Olá, Júlia!</Text>,
         rightContent: <Svg as={HorizontalBrand} className="w-24" />,
       }}
     >
-      <ScrollView
-        contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <View className="space-y-6 pb-20">
+      <View className="flex-1 justify-between">
+        <View className="flex-1 items-center justify-center gap-6">
           <StepOne
             isActive={activeStep === 1}
             onContinue={() => handleStepChange(2)}
@@ -42,7 +45,35 @@ const Welcome = () => {
 
           <StepThree isActive={activeStep === 3} />
         </View>
-      </ScrollView>
+      </View>
+
+      {activeStep === 3 && (
+        <Button
+          iconRight={ArrowRight}
+          iconColor="#FFF"
+          className="px-19 mb-12 w-[220px] self-center rounded-full bg-primary py-3"
+        >
+          <Text numberOfLines={1} className="text-4 text-white">
+            Vamos lá
+          </Text>
+        </Button>
+      )}
+
+      {activeStep !== 3 && (
+        <View className="bottom-0 w-full flex-row justify-between self-center bg-white">
+          <Button variant="ghost" className="mb-12 mt-5 p-4 py-3">
+            <Text className="text-base text-primary">Pular</Text>
+          </Button>
+          <Button
+            variant="secondary"
+            iconRight={ArrowRight}
+            iconColor="#adadad"
+            className="mb-12 mt-5 bg-[#F3F2F7] py-3 pl-4 pr-12"
+          >
+            <Text className="text-secondary-foreground-soft">Vamos lá!</Text>
+          </Button>
+        </View>
+      )}
     </ScreenTemplate>
   );
 };

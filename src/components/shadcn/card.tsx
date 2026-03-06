@@ -9,7 +9,7 @@ function Card({ className, ...props }: ViewProps & React.RefAttributes<View>) {
     <TextClassContext.Provider value="text-card-foreground">
       <View
         className={cn(
-          'relative mb-[22px] flex flex-col gap-6 rounded-xl border-none bg-card py-6 shadow-black/5',
+          'relative flex-col gap-6 rounded-xl border-none bg-card py-6',
           className,
         )}
         style={SHADOWS.soft}
@@ -37,7 +37,7 @@ function CardTitle({
       role="heading"
       aria-level={3}
       className={cn(
-        'h-8 font-inter-semibold text-lg leading-none text-primary',
+        'font-inter-semibold text-xl leading-none text-primary',
         className,
       )}
       {...props}
